@@ -1,6 +1,5 @@
-import 'package:cloud_firestore/cloud_firestore.dart';
-import 'package:desafio_flutter/domain/models/user.dart';
-import 'package:desafio_flutter/utils/result.dart';
+import 'package:desafio_flutter/core/utils/failure_mapper.dart';
+import 'package:desafio_flutter/core/utils/result.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
 class FirebaseAuthService {
@@ -17,18 +16,15 @@ class FirebaseAuthService {
         password: password,
       );
       if (credential.user == null) {
-        return Result.error(Exception('Falha no login'));
+        return Result.failure(
+          FailureMapper.mapToFailure(
+            Exception('Login falhou: usuário não encontrado'),
+          ),
+        );
       }
       return Result.ok(credential);
-    } on FirebaseAuthException catch (e) {
-      return Result.error(
-        FirebaseAuthException(
-          message: _getAuthErrorMessage(e.code),
-          code: e.code,
-        ),
-      );
     } catch (e) {
-      return Result.error(Exception('Erro inesperado: ${e.toString()}'));
+      return Result.failure(FailureMapper.mapToFailure(e));
     }
   }
 
@@ -43,19 +39,16 @@ class FirebaseAuthService {
       );
 
       if (credential.user == null) {
-        return Result.error(Exception('Falha ao criar usuário'));
+        return Result.failure(
+          FailureMapper.mapToFailure(
+            Exception('Criação de usuário falhou: usuário não criado'),
+          ),
+        );
       }
 
       return Result.ok(credential);
-    } on FirebaseAuthException catch (e) {
-      return Result.error(
-        FirebaseAuthException(
-          message: _getAuthErrorMessage(e.code),
-          code: e.code,
-        ),
-      );
     } catch (e) {
-      return Result.error(Exception('Erro inesperado: ${e.toString()}'));
+      return Result.failure(FailureMapper.mapToFailure(e));
     }
   }
 
@@ -64,7 +57,7 @@ class FirebaseAuthService {
       await _auth.signOut();
       return Result.ok(null);
     } catch (e) {
-      return Result.error(Exception('Erro ao fazer logout: ${e.toString()}'));
+      return Result.failure(FailureMapper.mapToFailure(e));
     }
   }
 
@@ -72,46 +65,17 @@ class FirebaseAuthService {
     try {
       await _auth.sendPasswordResetEmail(email: email);
       return const Result.ok(null);
-    } on FirebaseAuthException catch (e) {
-      return Result.error(
-        FirebaseAuthException(
-          message: _getAuthErrorMessage(e.code),
-          code: e.code,
-        ),
-      );
     } catch (e) {
-      return Result.error(Exception('Erro inesperado: $e'));
+      return Result.failure(FailureMapper.mapToFailure(e));
     }
   }
 
   Future<Result<User?>> getCurrentUser() async {
     try {
       final firebaseUser = _auth.currentUser;
-      if (firebaseUser == null) {
-        return const Result.ok(null);
-      }
       return Result.ok(firebaseUser);
     } catch (e) {
-      return Result.error(Exception('Erro ao obter usuário: $e'));
-    }
-  }
-
-  String _getAuthErrorMessage(String code) {
-    switch (code) {
-      case 'user-not-found':
-        return 'CPF não encontrado';
-      case 'wrong-password':
-        return 'Senha incorreta';
-      case 'email-already-in-use':
-        return 'CPF já está em uso';
-      case 'weak-password':
-        return 'Senha muito fraca';
-      case 'invalid-email':
-        return 'CPF inválido';
-      case 'too-many-requests':
-        return 'Muitas tentativas. Tente novamente mais tarde';
-      default:
-        return 'Erro de autenticação: $code';
+      return Result.failure(FailureMapper.mapToFailure(e));
     }
   }
 }
