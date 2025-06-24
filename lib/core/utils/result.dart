@@ -43,3 +43,31 @@ final class Error<T> extends Result<T> {
   @override
   String toString() => 'Result<$T>.error($failure)';
 }
+
+extension ResultExtensions<T> on Result<T> {
+  /// Extrai o valor ou lança a Failure
+  T get value {
+    if (this is Error<T>) {
+      throw (this as Error<T>).failure;
+    }
+    return (this as Ok<T>).value;
+  }
+
+  /// Extrai o valor ou retorna null
+  T? get valueOrNull {
+    if (this is Error<T>) return null;
+    return (this as Ok<T>).value;
+  }
+
+  /// Extrai a failure ou retorna null
+  Failure? get failureOrNull {
+    if (this is Ok<T>) return null;
+    return (this as Error<T>).failure;
+  }
+
+  /// Verifica se é sucesso
+  bool get isSuccess => this is Ok<T>;
+
+  /// Verifica se é erro
+  bool get isError => this is Error<T>;
+}
