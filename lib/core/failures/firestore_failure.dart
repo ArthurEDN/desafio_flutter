@@ -49,3 +49,11 @@ class OperationTimeoutFailure extends FirestoreFailure {
         code: 'operation_timeout',
       );
 }
+
+class UnknownFirestoreFailure extends FirestoreFailure {
+  const UnknownFirestoreFailure({super.details})
+    : super(
+        message: 'Erro no servidor. Tente novamente',
+        code: 'unknown_firestore_error',
+      );
+}

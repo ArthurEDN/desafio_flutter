@@ -38,3 +38,8 @@ class CpfValidationFailure extends ValidationFailure {
   const CpfValidationFailure()
     : super(message: 'CPF inválido', code: 'cpf_validation_failure');
 }
+
+class EmptyFieldFailure extends ValidationFailure {
+  const EmptyFieldFailure(String fieldName)
+    : super(message: '$fieldName é obrigatório', code: 'empty_field');
+}

@@ -10,7 +10,7 @@ abstract class AuthFailure extends Failure {
 
 class InvalidCredentialsFailure extends AuthFailure {
   const InvalidCredentialsFailure()
-    : super(message: 'CPF ou senha inválidos', code: 'invalid_credentials');
+    : super(message: 'CPF ou senha incorretos', code: 'invalid_credentials');
 }
 
 class UserNotFoundFailure extends AuthFailure {
@@ -21,14 +21,17 @@ class UserNotFoundFailure extends AuthFailure {
 class WeakPasswordFailure extends AuthFailure {
   const WeakPasswordFailure()
     : super(
-        message: 'A senha deve ter pelo menos 6 caracteres',
+        message: 'Senha deve ter pelo menos 6 caracteres',
         code: 'weak_password',
       );
 }
 
 class CpfAlreadyInUseFailure extends AuthFailure {
   const CpfAlreadyInUseFailure()
-    : super(message: 'Este CPF já está cadastrado', code: 'cpf_already_in_use');
+    : super(
+        message: 'Este CPF já está cadastrado',
+        code: 'email_already_in_use',
+      );
 }
 
 class TooManyRequestsFailure extends AuthFailure {
@@ -41,7 +44,7 @@ class TooManyRequestsFailure extends AuthFailure {
 
 class InvalidCpfFailure extends AuthFailure {
   const InvalidCpfFailure()
-    : super(message: 'CPF inválido', code: 'invalid_cpf');
+    : super(message: 'CPF inválido', code: 'invalid_email');
 }
 
 class UserDisabledFailure extends AuthFailure {
@@ -57,5 +60,22 @@ class AuthenticationRequiredFailure extends AuthFailure {
     : super(
         message: 'É necessário fazer login para continuar',
         code: 'authentication_required',
+      );
+}
+
+class NetworkRequestFailedFailure extends AuthFailure {
+  const NetworkRequestFailedFailure()
+    : super(
+        message: 'Sem conexão com a internet',
+        code: 'network_request_failed',
+      );
+}
+
+class UnknownAuthFailure extends AuthFailure {
+  const UnknownAuthFailure({String? details})
+    : super(
+        message: 'Erro na autenticação. Tente novamente',
+        code: 'unknown_auth_error',
+        details: details,
       );
 }

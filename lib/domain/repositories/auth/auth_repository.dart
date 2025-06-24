@@ -1,7 +1,7 @@
   import 'package:firebase_auth/firebase_auth.dart';
 
   import '../../models/user.dart';
-  import '../../../utils/result.dart';
+  import '../../../core/utils/result.dart';
 
   abstract class IAuthRepository {
     Future<Result<UserEntity>> signIn({
