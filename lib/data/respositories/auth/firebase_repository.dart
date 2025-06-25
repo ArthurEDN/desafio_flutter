@@ -31,7 +31,7 @@ class FirebaseAuthRepository extends IAuthRepository {
       password: password,
     );
 
-    if (credentialResult.isError) {
+    if (credentialResult.isFailure) {
       return Result.failure(credentialResult.failureOrNull!);
     }
 
@@ -39,7 +39,7 @@ class FirebaseAuthRepository extends IAuthRepository {
     final uid = credential.user!.uid;
     final docResult = await _firestore.getUserDocument(uid);
 
-    if (docResult.isError) {
+    if (docResult.isFailure) {
       return Result.failure(docResult.failureOrNull!);
     }
 
@@ -65,7 +65,7 @@ class FirebaseAuthRepository extends IAuthRepository {
       email: _cpfToEmail(cpf),
       password: password,
     );
-    if (credentialResult.isError) {
+    if (credentialResult.isFailure) {
       return Result.failure(credentialResult.failureOrNull!);
     }
 
@@ -74,7 +74,7 @@ class FirebaseAuthRepository extends IAuthRepository {
     final user = UserEntity(id: uid, name: name, cpf: cpf, email: email);
     final setResult = await _firestore.setUserDocument(uid, user.toMap());
 
-    if (setResult.isError) {
+    if (setResult.isFailure) {
       return Result.failure(setResult.failureOrNull!);
     }
 
@@ -90,7 +90,7 @@ class FirebaseAuthRepository extends IAuthRepository {
   Future<Result<void>> requestPasswordReset({required String email}) async {
     final userQueryResult = await _firestore.findUserByRealEmail(email);
 
-    if (userQueryResult.isError) {
+    if (userQueryResult.isFailure) {
       return Result.failure(userQueryResult.failureOrNull!);
     }
 
@@ -112,7 +112,7 @@ class FirebaseAuthRepository extends IAuthRepository {
   @override
   Future<Result<UserEntity?>> getCurrentUser() async {
     final userResult = await _firebaseAuth.getCurrentUser();
-    if (userResult.isError) {
+    if (userResult.isFailure) {
       return Result.failure(userResult.failureOrNull!);
     }
 
@@ -124,7 +124,7 @@ class FirebaseAuthRepository extends IAuthRepository {
 
     final docResult = await _firestore.getUserDocument(firebaseUser.uid);
 
-    if (docResult.isError) {
+    if (docResult.isFailure) {
       return Result.failure(docResult.failureOrNull!);
     }
 

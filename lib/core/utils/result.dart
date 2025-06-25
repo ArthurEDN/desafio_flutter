@@ -69,5 +69,5 @@ extension ResultExtensions<T> on Result<T> {
   bool get isSuccess => this is Ok<T>;
 
   /// Verifica se é erro
-  bool get isError => this is Error<T>;
+  bool get isFailure => this is Error<T>;
 }
