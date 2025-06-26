@@ -1,7 +1,7 @@
 import 'package:desafio_flutter/core/themes/colors.dart';
 import 'package:desafio_flutter/core/themes/dimens.dart';
 import 'package:desafio_flutter/presentation/auth/login/bloc/login_bloc.dart';
-import 'package:desafio_flutter/presentation/auth/login/widgets/auth_tabs.dart';
+import 'package:desafio_flutter/presentation/auth/login/widgets/auth_tabs_login.dart';
 import 'package:desafio_flutter/presentation/auth/login/widgets/cpf_input.dart';
 import 'package:desafio_flutter/presentation/auth/login/widgets/login_options_row.dart';
 import 'package:desafio_flutter/presentation/auth/login/widgets/login_submit_button.dart';
@@ -9,14 +9,14 @@ import 'package:desafio_flutter/presentation/auth/login/widgets/password_input.d
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
 
-class LoginForm extends StatefulWidget {
-  const LoginForm({super.key});
+class LoginFormFields extends StatefulWidget {
+  const LoginFormFields({super.key});
 
   @override
-  State<LoginForm> createState() => _LoginFormState();
+  State<LoginFormFields> createState() => _LoginFormFieldsState();
 }
 
-class _LoginFormState extends State<LoginForm> {
+class _LoginFormFieldsState extends State<LoginFormFields> {
   final _cpfController = TextEditingController();
   final _passwordController = TextEditingController();
   final _cpfFocusNode = FocusNode();
@@ -48,7 +48,7 @@ class _LoginFormState extends State<LoginForm> {
           child: Column(
             mainAxisSize: MainAxisSize.min,
             children: [
-              const AuthTabs(),
+              const AuthTabsLogin(),
               const SizedBox(height: AppDimens.spacingXL),
               CpfInput(
                 controller: _cpfController,

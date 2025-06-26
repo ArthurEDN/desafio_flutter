@@ -1,8 +1,8 @@
 import 'package:desafio_flutter/core/themes/colors.dart';
 import 'package:flutter/material.dart';
 
-class LoginBackground extends StatelessWidget {
-  const LoginBackground({super.key});
+class GradientBackground extends StatelessWidget {
+  const GradientBackground({super.key});
 
   @override
   Widget build(BuildContext context) {

@@ -107,6 +107,7 @@ class RegisterBloc extends Bloc<RegisterEvent, RegisterState> {
       if (result.isSuccess) {
         emit(state.copyWith(status: FormzSubmissionStatus.success));
       } else {
+        print(result.failureOrNull?.message);
         emit(
           state.copyWith(
             status: FormzSubmissionStatus.failure,

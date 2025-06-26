@@ -2,9 +2,9 @@ import 'package:desafio_flutter/core/routing/routes.dart';
 import 'package:desafio_flutter/core/themes/colors.dart';
 import 'package:desafio_flutter/core/themes/dimens.dart';
 import 'package:desafio_flutter/presentation/auth/login/bloc/login_bloc.dart';
-import 'package:desafio_flutter/presentation/auth/login/widgets/login_background.dart';
+import 'package:desafio_flutter/shared/widgets/gradient_background.dart';
 import 'package:desafio_flutter/presentation/auth/login/widgets/login_footer.dart';
-import 'package:desafio_flutter/presentation/auth/login/widgets/login_form.dart';
+import 'package:desafio_flutter/presentation/auth/login/widgets/login_form_fields.dart';
 import 'package:desafio_flutter/presentation/auth/login/widgets/login_header.dart';
 import 'package:flutter/material.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -41,7 +41,7 @@ class LoginScreen extends StatelessWidget {
       child: Scaffold(
         body: Stack(
           children: [
-            const Positioned.fill(child: LoginBackground()),
+            const Positioned.fill(child: GradientBackground()),
             Center(
               child: SingleChildScrollView(
                 child: Padding(
@@ -56,7 +56,7 @@ class LoginScreen extends StatelessWidget {
                         children: [
                           LoginHeader(),
                           SizedBox(height: AppDimens.spacingLG),
-                          LoginForm(),
+                          LoginFormFields(),
                           SizedBox(height: AppDimens.spacingXXL),
                           LoginFooter(),
                           SizedBox(height: AppDimens.spacingLG),
