@@ -313,6 +313,8 @@ class _LoginScreenState extends State<LoginScreen> {
   }
 
   Widget _buildOptionsRow(BuildContext context) {
+    final isMobile = AppDimens.isMobile(context);
+
     return Row(
       children: [
         SizedBox(
@@ -329,21 +331,43 @@ class _LoginScreenState extends State<LoginScreen> {
             activeColor: AppColors.accent,
           ),
         ),
-        const SizedBox(width: AppDimens.spacingSM),
-        Text(
-          'Lembrar Sempre',
-          style: Theme.of(
-            context,
-          ).textTheme.bodySmall?.copyWith(color: AppColors.textSecondary),
+        SizedBox(width: isMobile ? AppDimens.spacingXS : AppDimens.spacingSM),
+        Flexible(
+          flex: isMobile ? 2 : 3,
+          child: Text(
+            'Lembrar Sempre',
+            style: Theme.of(context).textTheme.bodySmall?.copyWith(
+              color: AppColors.textSecondary,
+              fontSize: isMobile ? 12 : null,
+            ),
+            overflow: TextOverflow.ellipsis,
+            maxLines: 1,
+          ),
         ),
-        const Spacer(),
-        TextButton(
-          onPressed: () => context.go(Routes.forgotPassword),
-          child: const Text(
-            'Esqueceu a senha?',
-            style: TextStyle(
-              color: AppColors.accent,
-              fontWeight: FontWeight.bold,
+        SizedBox(width: isMobile ? AppDimens.spacingXS : AppDimens.spacingSM),
+        Flexible(
+          flex: isMobile ? 2 : 2,
+          child: TextButton(
+            onPressed: () => context.go(Routes.forgotPassword),
+            style: TextButton.styleFrom(
+              padding: EdgeInsets.symmetric(
+                horizontal: isMobile
+                    ? AppDimens.paddingXS
+                    : AppDimens.paddingSM,
+              ),
+              minimumSize: Size.zero,
+              tapTargetSize: MaterialTapTargetSize.shrinkWrap,
+            ),
+            child: Text(
+              'Esqueceu a senha?',
+              style: TextStyle(
+                color: AppColors.accent,
+                fontWeight: FontWeight.bold,
+                fontSize: isMobile ? 12 : 16,
+              ),
+              overflow: TextOverflow.ellipsis,
+              maxLines: 1,
+              textAlign: TextAlign.right,
             ),
           ),
         ),
