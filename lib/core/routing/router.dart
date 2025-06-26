@@ -1,7 +1,7 @@
 import 'dart:async';
 import 'package:desafio_flutter/core/config/dependecies.dart';
 import 'package:desafio_flutter/presentation/auth/bloc/auth_bloc.dart';
-import 'package:desafio_flutter/presentation/auth/forgot_password/screens/forgot_screen.dart';
+import 'package:desafio_flutter/presentation/auth/forgot_password/screens/forgot_password_screen.dart';
 import 'package:desafio_flutter/presentation/auth/login/screens/login_screen.dart';
 import 'package:desafio_flutter/presentation/auth/register/screens/register_screen.dart';
 import 'package:desafio_flutter/presentation/home/screens/home_screen.dart';
