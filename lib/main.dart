@@ -1,10 +1,11 @@
 import 'package:desafio_flutter/core/config/dependecies.dart';
 import 'package:desafio_flutter/core/themes/theme.dart';
 import 'package:desafio_flutter/presentation/auth/bloc/auth_bloc.dart';
+import 'package:desafio_flutter/presentation/auth/forgot_password/bloc/forgot_password_bloc.dart';
 import 'package:desafio_flutter/presentation/auth/login/bloc/login_bloc.dart';
 import 'package:desafio_flutter/presentation/auth/register/bloc/register_bloc.dart';
 import 'package:desafio_flutter/presentation/home/bloc/home_bloc.dart';
-import 'package:desafio_flutter/routing/router.dart';
+import 'package:desafio_flutter/core/routing/router.dart';
 import 'package:flutter/material.dart';
 import 'package:firebase_core/firebase_core.dart';
 import 'package:flutter_bloc/flutter_bloc.dart';
@@ -28,10 +29,13 @@ class MyApp extends StatelessWidget {
         BlocProvider<RegisterBloc>(
           create: (context) => locator<RegisterBloc>(),
         ),
+        BlocProvider<ForgotPasswordBloc>(
+          create: (context) => locator<ForgotPasswordBloc>(),
+        ),
         BlocProvider<HomeBloc>(create: (context) => locator<HomeBloc>()),
       ],
       child: MaterialApp.router(
-        title: 'Flutter Demo',
+        title: 'Desafio Flutter',
         theme: AppTheme.darkTheme,
         routerConfig: router,
         debugShowCheckedModeBanner: false,

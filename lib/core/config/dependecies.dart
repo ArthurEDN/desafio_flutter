@@ -5,6 +5,7 @@ import 'package:desafio_flutter/data/services/firebase/firestore_service.dart';
 import 'package:desafio_flutter/domain/repositories/auth/auth_repository.dart';
 import 'package:desafio_flutter/domain/repositories/user/user_repository.dart';
 import 'package:desafio_flutter/presentation/auth/bloc/auth_bloc.dart';
+import 'package:desafio_flutter/presentation/auth/forgot_password/bloc/forgot_password_bloc.dart';
 import 'package:desafio_flutter/presentation/auth/login/bloc/login_bloc.dart';
 import 'package:desafio_flutter/presentation/auth/register/bloc/register_bloc.dart';
 import 'package:desafio_flutter/presentation/home/bloc/home_bloc.dart';
@@ -37,6 +38,10 @@ void setupLocator() {
 
   locator.registerFactory(
     () => RegisterBloc(authRepository: locator<IAuthRepository>()),
+  );
+
+  locator.registerFactory(
+    () => ForgotPasswordBloc(authRepository: locator<IAuthRepository>()),
   );
 
   locator.registerFactory(

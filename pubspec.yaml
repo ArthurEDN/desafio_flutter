@@ -30,7 +30,8 @@ dependencies:
   # UI & Utils
   cupertino_icons: ^1.0.8
   google_fonts: ^6.2.1
-  webview_flutter: ^4.13.0
+
+  #Validator
   formz: ^0.8.0
 
 dev_dependencies:
