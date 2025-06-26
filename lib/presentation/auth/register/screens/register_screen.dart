@@ -1,7 +1,5 @@
-import 'package:desafio_flutter/core/themes/colors.dart';
 import 'package:desafio_flutter/core/themes/dimens.dart';
 import 'package:desafio_flutter/presentation/auth/register/bloc/register_bloc.dart';
-import 'package:desafio_flutter/core/routing/routes.dart';
 import 'package:desafio_flutter/presentation/auth/register/widgets/register_form_content.dart';
 import 'package:desafio_flutter/presentation/auth/register/widgets/register_header.dart';
 import 'package:desafio_flutter/presentation/auth/register/widgets/register_success_view.dart';
