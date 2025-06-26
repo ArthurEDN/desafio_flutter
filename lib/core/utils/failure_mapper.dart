@@ -4,7 +4,6 @@ import 'package:desafio_flutter/core/failures/auth_failure.dart';
 import 'package:desafio_flutter/core/failures/firestore_failure.dart';
 import 'package:desafio_flutter/core/failures/network_failure.dart';
 import 'package:firebase_auth/firebase_auth.dart';
-import 'package:cloud_firestore/cloud_firestore.dart';
 import 'package:desafio_flutter/core/failures/unknown_failure.dart';
 import 'package:desafio_flutter/core/failures/failure.dart';
 

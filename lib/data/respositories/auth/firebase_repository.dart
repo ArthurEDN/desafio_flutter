@@ -6,7 +6,7 @@ import 'package:desafio_flutter/domain/models/user.dart';
 import 'package:desafio_flutter/core/utils/result.dart';
 import 'package:firebase_auth/firebase_auth.dart';
 
-class FirebaseAuthRepository extends IAuthRepository {
+class FirebaseAuthRepository implements IAuthRepository {
   final FirebaseAuthService _firebaseAuth;
   final FirebaseStoreService _firestore;
 

@@ -72,10 +72,9 @@ class NetworkRequestFailedFailure extends AuthFailure {
 }
 
 class UnknownAuthFailure extends AuthFailure {
-  const UnknownAuthFailure({String? details})
+  const UnknownAuthFailure({super.details})
     : super(
         message: 'Erro na autenticação. Tente novamente',
         code: 'unknown_auth_error',
-        details: details,
       );
 }
